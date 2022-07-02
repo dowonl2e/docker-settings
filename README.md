@@ -27,20 +27,14 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
     
 3. 프로젝트 Root 디렉토리 위치에 docker-compose.yml 생성 및 설정
 
+
       version: "[version]"
-    
       services:
-      
             [DB 서비스명]:
-            
                   container_name: "[DB 컨테이너명]"
-                  
                   image: [이미지명]:[이미지태그]
-                  
                   environment:
-                  
                       - MYSQL_ROOT_PASSWORD=[MySQL ROOT 비밀번호]
-                      
                       - MYSQL_DATABASE=[DataBase 명]
                       - MYSQL_USER=[계정]
                       - MYSQL_PASSWORD=[비밀번호]
@@ -51,7 +45,6 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
                   - ./db/data:/var/lib/mysql:rw
             ports:
                   - [외부접근포트]:[내부포트]
-
       app:
             build: .
             container_name: [App 컨테이너명]
@@ -59,6 +52,8 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
                   - [외부접근포트]:[내부포트]
             depends_on:
                   - [DB 서비스명]
+
+
           
 4. 프로젝트 연결 DB수정
   - 연결 디비 설정시 docker-compose.yml의 [DB 서비스명]으로 변경
