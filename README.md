@@ -27,35 +27,32 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
     
 3. 프로젝트 Root 디렉토리 위치에 docker-compose.yml 생성 및 설정
 
-    version: "[version]"
-
-    services:
-      [DB 서비스명]:
-        container_name: "[DB 컨테이너명]"
-        image: [이미지명]:[이미지태그]
-        environment:
-          - MYSQL_ROOT_PASSWORD=[MySQL ROOT 비밀번호]
-          - MYSQL_DATABASE=[DataBase 명]
-          - MYSQL_USER=[계정]
-          - MYSQL_PASSWORD=[비밀번호]
-        command:
-          #DB 인코딩
-          - --character-set-server=utf8mb4
-          - --collation-server=utf8mb4_unicode_ci
-        volumes:
-          #DB 볼륨
-          - ./db/data:/var/lib/mysql:rw
-        ports:
-          #DB 포트 설정
-          - [외부접근포트]:[내부포트]
+      version: "[version]"
+    
+      services:
+            [DB 서비스명]:
+                  container_name: "[DB 컨테이너명]"
+                  image: [이미지명]:[이미지태그]
+                  environment:
+                      - MYSQL_ROOT_PASSWORD=[MySQL ROOT 비밀번호]
+                      - MYSQL_DATABASE=[DataBase 명]
+                      - MYSQL_USER=[계정]
+                      - MYSQL_PASSWORD=[비밀번호]
+            command:
+                  - --character-set-server=utf8mb4
+                  - --collation-server=utf8mb4_unicode_ci
+            volumes:
+                  - ./db/data:/var/lib/mysql:rw
+            ports:
+                  - [외부접근포트]:[내부포트]
 
       app:
-        build: .
-        container_name: [App 컨테이너명]
-        ports:
-          - [외부접근포트]:[내부포트]
-        depends_on:
-          - [DB 서비스명]
+            build: .
+            container_name: [App 컨테이너명]
+            ports:
+                  - [외부접근포트]:[내부포트]
+            depends_on:
+                  - [DB 서비스명]
           
 4. 프로젝트 연결 DB수정
   - 연결 디비 설정시 docker-compose.yml의 [DB 서비스명]으로 변경
@@ -68,18 +65,29 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
   - docker-compose.yml 파일이 있는곳에서 실행
     $ docker-compose up
 
+# 명령어
+백그라운드 실행
+  
+      $ docker-compose up -d
 
-# 백그라운드 실행
-  $ docker-compose up -d
-# 상태 확인
-  $ docker-compose ps
-# docker-compose 서비스 중단
-  $ docker-compose stop
-# docker-compose 서비스 시작
-  $ docker-compose start
-# docker-compose 서비스 제거 (volume, network 까지 삭제)
-  $ docker-compose down
-# 컨테이너 로그 확인
-  $ docker-compose logs
+상태 확인
+
+      $ docker-compose ps
+
+docker-compose 서비스 중단
+
+      $ docker-compose stop
+
+docker-compose 서비스 시작
+
+      $ docker-compose start
+
+docker-compose 서비스 제거 (volume, network 까지 삭제)
+
+      $ docker-compose down
+
+컨테이너 로그 확인
+
+      $ docker-compose logs
   
   
