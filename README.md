@@ -22,7 +22,7 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
   - ENTRYPOINT : container 실행 시 추가로 실행되어야하는 커멘드 입력 (app.jar 파일 실행)
   
 2. Dockerfile로 이미지 빌드하기
-  # 설정한 Dockerfile로 이동 후 빌드
+  - 설정한 Dockerfile로 이동 후 빌드
   $ docker build -t [이미지명]:[태그명] .
     
 3. 프로젝트 Root 디렉토리 위치에 docker-compose.yml 생성 및 설정
@@ -30,11 +30,17 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
       version: "[version]"
     
       services:
+      
             [DB 서비스명]:
+            
                   container_name: "[DB 컨테이너명]"
+                  
                   image: [이미지명]:[이미지태그]
+                  
                   environment:
+                  
                       - MYSQL_ROOT_PASSWORD=[MySQL ROOT 비밀번호]
+                      
                       - MYSQL_DATABASE=[DataBase 명]
                       - MYSQL_USER=[계정]
                       - MYSQL_PASSWORD=[비밀번호]
