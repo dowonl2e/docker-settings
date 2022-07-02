@@ -2,7 +2,7 @@
 Docker에 Spring Boot & MySQL 배포 환경 구성
 
 ## Spring Boot Docker 설정하기
-### 프로젝트 Root 디렉토리 위치에 Dockerfile 생성 및 설정
+### 1. 프로젝트 Root 디렉토리 위치에 Dockerfile 생성 및 설정
       
             LABEL title="webserver"
             LABEL version="1.0"
@@ -17,11 +17,12 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
   - ARG : Dockerfile build시에 사용하는 변수 
   - ENTRYPOINT : container 실행 시 추가로 실행되어야하는 커멘드 입력 (app.jar 파일 실행)
   
-### Dockerfile로 이미지 빌드하기
+### 2. Dockerfile로 이미지 빌드하기
   - 설정한 Dockerfile로 이동 후 빌드
-  $ docker build -t [이미지명]:[태그명] .
+
+      $ docker build -t [이미지명]:[태그명] .
     
-### 프로젝트 Root 디렉토리 위치에 docker-compose.yml 생성 및 설정
+### 3. 프로젝트 Root 디렉토리 위치에 docker-compose.yml 생성 및 설정
 
             version: "[version]"
             services:
@@ -49,16 +50,18 @@ Docker에 Spring Boot & MySQL 배포 환경 구성
                         - [DB 서비스명]
 
           
-### 프로젝트 연결 DB수정
-  - 연결 디비 설정시 docker-compose.yml의 [DB 서비스명]으로 변경
-    
+### 4. 프로젝트 연결 DB수정
+연결 디비 설정시 docker-compose.yml의 [DB 서비스명]으로 변경
+
       jdbc:mysql://[DB 서비스명]:3306/
 
-### 프로젝트 빌드하여 jar 파일 생성
+### 5. 프로젝트 빌드하여 jar 파일 생성
 
-### docker-compose.yml 파일실행
-  - docker-compose.yml 파일이 있는곳에서 실행
-    $ docker-compose up
+
+### 6. docker-compose.yml 실행
+docker-compose.yml 파일이 있는 위치로 이동 후 실행
+      
+      $ docker-compose up
 
 ## 명령어
 백그라운드 실행
